@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event & Rekomendasi - VisitLombok.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-2xl font-bold">🏝️ VisitLombok.id</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-200"><i class="fas fa-home"></i> Beranda</a>
+                    <a href="peta.html" class="hover:text-green-200"><i class="fas fa-map"></i> Peta Wisata</a>
+                    <a href="kategori.html" class="hover:text-green-200"><i class="fas fa-list"></i> Kategori Wisata</a>
+                    <a href="event.html" class="hover:text-green-200 font-semibold"><i class="fas fa-calendar"></i> Event & Rekomendasi</a>
+                    <a href="tentang.html" class="hover:text-green-200"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                    <a href="admin.html" class="hover:text-green-200"><i class="fas fa-user-cog"></i> Login Admin</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800">Event & Rekomendasi Wisata</h1>
+        
+        <!-- Upcoming Events -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800">Event Mendatang</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="eventsList">
+                <!-- Events will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Popular Recommendations -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800">Rekomendasi Populer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="recommendationsList">
+                <!-- Recommendations will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Seasonal Highlights -->
+        <section>
+            <h2 class="text-3xl font-bold mb-8 text-gray-800">Highlight Musiman</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-3 text-green-800">Musim Kemarau (April-September)</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Pantai-pantai dengan ombak tenang</li>
+                            <li>Pendakian Gunung Rinjani</li>
+                            <li>Snorkeling dan diving di Gili</li>
+                            <li>Festival Bau Nyale</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-3 text-blue-800">Musim Hujan (Oktober-Maret)</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Air terjun dengan debit air maksimal</li>
+                            <li>Wisata budaya dalam ruangan</li>
+                            <li>Kuliner khas Lombok</li>
+                            <li>Festival budaya lokal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 VisitLombok.id - Sistem Informasi Geografis Wisata Pulau Lombok</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/event.js"></script>
+</body>
+</html>

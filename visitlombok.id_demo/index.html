@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisitLombok.id - Sistem Informasi Geografis Wisata Pulau Lombok</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold">🏝️ VisitLombok.id</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-200 font-semibold"><i class="fas fa-home"></i> Beranda</a>
+                    <a href="peta.html" class="hover:text-green-200"><i class="fas fa-map"></i> Peta Wisata</a>
+                    <a href="kategori.html" class="hover:text-green-200"><i class="fas fa-list"></i> Kategori Wisata</a>
+                    <a href="event.html" class="hover:text-green-200"><i class="fas fa-calendar"></i> Event & Rekomendasi</a>
+                    <a href="tentang.html" class="hover:text-green-200"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                    <a href="admin.html" class="hover:text-green-200"><i class="fas fa-user-cog"></i> Login Admin</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 hover:text-green-200"><i class="fas fa-home"></i> Beranda</a>
+                <a href="peta.html" class="block py-2 hover:text-green-200"><i class="fas fa-map"></i> Peta Wisata</a>
+                <a href="kategori.html" class="block py-2 hover:text-green-200"><i class="fas fa-list"></i> Kategori Wisata</a>
+                <a href="event.html" class="block py-2 hover:text-green-200"><i class="fas fa-calendar"></i> Event & Rekomendasi</a>
+                <a href="tentang.html" class="block py-2 hover:text-green-200"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                <a href="admin.html" class="block py-2 hover:text-green-200"><i class="fas fa-user-cog"></i> Login Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-green-500 to-blue-600 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">Selamat Datang di VisitLombok.id</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                Jelajahi keindahan Pulau Lombok melalui Sistem Informasi Geografis wisata terlengkap. 
+                Temukan destinasi menarik, rencanakan perjalanan, dan nikmati pengalaman tak terlupakan.
+            </p>
+            <a href="peta.html" class="bg-white text-green-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-green-100 transition duration-300">
+                🗺️ Jelajahi Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="text-3xl font-bold text-green-600" id="totalWisata">0</div>
+                    <div class="text-gray-600">Total Wisata</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="text-3xl font-bold text-blue-600" id="totalKategori">0</div>
+                    <div class="text-gray-600">Kategori</div>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <div class="text-3xl font-bold text-yellow-600" id="totalEvent">0</div>
+                    <div class="text-gray-600">Event Aktif</div>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg">
+                    <div class="text-3xl font-bold text-purple-600" id="totalWilayah">0</div>
+                    <div class="text-gray-600">Wilayah</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Destinations -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Destinasi Populer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="featuredDestinations">
+                <!-- Destinasi akan di-load via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Preview -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Peta Interaktif Lombok</h2>
+            <div class="bg-white rounded-lg shadow-lg p-4">
+                <div id="mapPreview" class="h-96 rounded-lg"></div>
+            </div>
+            <div class="text-center mt-6">
+                <a href="peta.html" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                    <i class="fas fa-expand"></i> Buka Peta Lengkap
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">VisitLombok.id</h3>
+                    <p class="text-green-200">
+                        Sistem Informasi Geografis wisata terdepan di Pulau Lombok.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Menu Utama</h4>
+                    <ul class="space-y-2 text-green-200">
+                        <li><a href="index.html" class="hover:text-white">Beranda</a></li>
+                        <li><a href="peta.html" class="hover:text-white">Peta Wisata</a></li>
+                        <li><a href="kategori.html" class="hover:text-white">Kategori Wisata</a></li>
+                        <li><a href="event.html" class="hover:text-white">Event & Rekomendasi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Informasi</h4>
+                    <ul class="space-y-2 text-green-200">
+                        <li><a href="tentang.html" class="hover:text-white">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-white">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:text-white">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Kontak</h4>
+                    <div class="text-green-200 space-y-2">
+                        <p><i class="fas fa-envelope"></i> info@visitlombok.id</p>
+                        <p><i class="fas fa-phone"></i> +62 370 123456</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Mataram, Lombok</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-200">
+                <p>&copy; 2024 VisitLombok.id - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/beranda.js"></script>
+</body>
+</html>

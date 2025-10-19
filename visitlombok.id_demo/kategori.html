@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori Wisata - VisitLombok.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-2xl font-bold">🏝️ VisitLombok.id</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-200"><i class="fas fa-home"></i> Beranda</a>
+                    <a href="peta.html" class="hover:text-green-200"><i class="fas fa-map"></i> Peta Wisata</a>
+                    <a href="kategori.html" class="hover:text-green-200 font-semibold"><i class="fas fa-list"></i> Kategori Wisata</a>
+                    <a href="event.html" class="hover:text-green-200"><i class="fas fa-calendar"></i> Event & Rekomendasi</a>
+                    <a href="tentang.html" class="hover:text-green-200"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                    <a href="admin.html" class="hover:text-green-200"><i class="fas fa-user-cog"></i> Login Admin</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800">Kategori Wisata Lombok</h1>
+        
+        <!-- Category Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Wisata Alam -->
+            <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                    <i class="fas fa-mountain text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3">Wisata Alam</h3>
+                    <p class="text-gray-600 mb-4">Pantai, gunung, air terjun, dan keindahan alam Lombok lainnya</p>
+                    <button class="view-category bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full" data-category="alam">
+                        Lihat Destinasi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wisata Budaya -->
+            <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                    <i class="fas fa-landmark text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3">Wisata Budaya</h3>
+                    <p class="text-gray-600 mb-4">Desa adat, tradisi, dan warisan budaya Sasak</p>
+                    <button class="view-category bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full" data-category="budaya">
+                        Lihat Destinasi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wisata Kuliner -->
+            <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                <div class="h-48 bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center">
+                    <i class="fas fa-utensils text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3">Wisata Kuliner</h3>
+                    <p class="text-gray-600 mb-4">Kuliner khas Lombok dan tempat makan terbaik</p>
+                    <button class="view-category bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full" data-category="kuliner">
+                        Lihat Destinasi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wisata Religi -->
+            <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                <div class="h-48 bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center">
+                    <i class="fas fa-place-of-worship text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3">Wisata Religi</h3>
+                    <p class="text-gray-600 mb-4">Tempat ibadah dan situs religi bersejarah</p>
+                    <button class="view-category bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full" data-category="religi">
+                        Lihat Destinasi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wisata Buatan -->
+            <div class="category-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                <div class="h-48 bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center">
+                    <i class="fas fa-monument text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-3">Wisata Buatan</h3>
+                    <p class="text-gray-600 mb-4">Taman, museum, dan objek wisata buatan manusia</p>
+                    <button class="view-category bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full" data-category="buatan">
+                        Lihat Destinasi
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Results -->
+        <div id="categoryResults" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="categoryTitle" class="text-2xl font-bold text-gray-800"></h2>
+                <button id="backToCategories" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Kategori
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="categoryDestinations">
+                <!-- Destinations will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 VisitLombok.id - Sistem Informasi Geografis Wisata Pulau Lombok</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/kategori.js"></script>
+</body>
+</html>

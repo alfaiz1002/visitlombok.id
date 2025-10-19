@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - VisitLombok.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-2xl font-bold">🏝️ VisitLombok.id</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-200"><i class="fas fa-home"></i> Beranda</a>
+                    <a href="peta.html" class="hover:text-green-200"><i class="fas fa-map"></i> Peta Wisata</a>
+                    <a href="kategori.html" class="hover:text-green-200"><i class="fas fa-list"></i> Kategori Wisata</a>
+                    <a href="event.html" class="hover:text-green-200"><i class="fas fa-calendar"></i> Event & Rekomendasi</a>
+                    <a href="tentang.html" class="hover:text-green-200 font-semibold"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                    <a href="admin.html" class="hover:text-green-200"><i class="fas fa-user-cog"></i> Login Admin</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800">Tentang VisitLombok.id</h1>
+        
+        <!-- About Section -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-green-700">Sistem Informasi Geografis Wisata Lombok</h2>
+                    <p class="text-gray-700 mb-4 text-lg">
+                        VisitLombok.id adalah platform digital inovatif yang menyediakan informasi lengkap 
+                        tentang objek wisata di Pulau Lombok melalui Sistem Informasi Geografis (SIG) berbasis web.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        Kami berkomitmen untuk mempromosikan keindahan dan kekayaan wisata Lombok dengan 
+                        menyediakan data yang akurat, peta interaktif, dan informasi terbaru untuk 
+                        memudahkan perencanaan perjalanan wisatawan.
+                    </p>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-green-800 mb-2">Visi Kami:</h3>
+                        <p class="text-green-700">Menjadi platform terdepan dalam penyediaan informasi wisata Lombok yang terpercaya dan mudah diakses.</p>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="bg-gradient-to-br from-green-400 to-blue-500 w-64 h-64 rounded-full flex items-center justify-center">
+                        <i class="fas fa-map-marked-alt text-white text-8xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Fitur Unggulan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Peta Interaktif</h3>
+                    <p class="text-gray-600">Navigasi mudah dengan peta digital yang menampilkan semua lokasi wisata</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-filter text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Filter Cerdas</h3>
+                    <p class="text-gray-600">Temukan wisata berdasarkan kategori, wilayah, dan preferensi Anda</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-route text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Perencanaan Rute</h3>
+                    <p class="text-gray-600">Dapatkan rute terbaik menuju destinasi wisata pilihan Anda</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Tim Pengembang</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="bg-gray-200 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Ahmad Wijaya</h3>
+                    <p class="text-gray-600">Project Manager</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-200 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Sari Dewi</h3>
+                    <p class="text-gray-600">Web Developer</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-200 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Budi Santoso</h3>
+                    <p class="text-gray-600">GIS Specialist</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-200 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Maya Sari</h3>
+                    <p class="text-gray-600">Content Writer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 VisitLombok.id - Sistem Informasi Geografis Wisata Pulau Lombok</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

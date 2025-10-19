@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Wisata - VisitLombok.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-2xl font-bold">🏝️ VisitLombok.id</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-200"><i class="fas fa-home"></i> Beranda</a>
+                    <a href="peta.html" class="hover:text-green-200 font-semibold"><i class="fas fa-map"></i> Peta Wisata</a>
+                    <a href="kategori.html" class="hover:text-green-200"><i class="fas fa-list"></i> Kategori Wisata</a>
+                    <a href="event.html" class="hover:text-green-200"><i class="fas fa-calendar"></i> Event & Rekomendasi</a>
+                    <a href="tentang.html" class="hover:text-green-200"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                    <a href="admin.html" class="hover:text-green-200"><i class="fas fa-user-cog"></i> Login Admin</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+        <!-- Filter Controls -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Cari Wilayah</label>
+                    <select id="regionFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="all">Semua Wilayah</option>
+                        <option value="Lombok Barat">Lombok Barat</option>
+                        <option value="Lombok Timur">Lombok Timur</option>
+                        <option value="Lombok Tengah">Lombok Tengah</option>
+                        <option value="Lombok Utara">Lombok Utara</option>
+                        <option value="Kota Mataram">Kota Mataram</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Cari Tempat</label>
+                    <input type="text" id="searchInput" placeholder="Ketik nama tempat wisata..." 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                    <select id="categoryFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="all">Semua Kategori</option>
+                        <option value="alam">Wisata Alam</option>
+                        <option value="budaya">Wisata Budaya</option>
+                        <option value="kuliner">Wisata Kuliner</option>
+                        <option value="religi">Wisata Religi</option>
+                        <option value="buatan">Wisata Buatan</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2">
+                <button id="currentLocation" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                    <i class="fas fa-location-arrow"></i> Dekat Saya
+                </button>
+                <button id="clearFilters" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                    <i class="fas fa-times"></i> Hapus Filter
+                </button>
+                <button id="clearRoute" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 hidden">
+                    <i class="fas fa-route"></i> Hapus Rute
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <!-- Results List -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="font-semibold text-lg mb-4">Daftar Wisata</h3>
+                    <div id="resultsList" class="space-y-3 max-h-[600px] overflow-y-auto">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="lg:col-span-3">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <div id="map" class="h-[600px] rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Route Info Panel (akan ditampilkan saat ada rute) -->
+    <div id="routeInfoPanel" class="hidden fixed bottom-4 left-4 bg-white rounded-lg shadow-xl p-6 z-[1000] max-w-sm border-l-4 border-green-500">
+        <div class="flex justify-between items-start mb-4">
+            <h3 class="font-bold text-lg text-green-700" id="routeTitle">Rute Navigasi</h3>
+            <button onclick="closeRouteInfo()" class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="space-y-3">
+            <div class="flex items-center">
+                <div class="bg-green-100 p-2 rounded-lg mr-3">
+                    <i class="fas fa-route text-green-600"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Jarak Tempuh</p>
+                    <p class="font-semibold" id="routeDistance">-</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                    <i class="fas fa-clock text-blue-600"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Estimasi Waktu</p>
+                    <p class="font-semibold" id="routeTime">-</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                    <i class="fas fa-car text-purple-600"></i>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Moda Transportasi</p>
+                    <p class="font-semibold">Kendaraan Pribadi</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 flex space-x-2">
+            <button onclick="startNavigation()" class="flex-1 bg-green-600 text-white py-2 px-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center">
+                <i class="fas fa-play mr-2"></i>Mulai Navigasi
+            </button>
+            <button onclick="closeRoute()" class="flex-1 bg-gray-600 text-white py-2 px-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors">
+                <i class="fas fa-times mr-2"></i>Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 VisitLombok.id - Sistem Informasi Geografis Wisata Pulau Lombok</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/peta.js"></script>
+</body>
+</html>
